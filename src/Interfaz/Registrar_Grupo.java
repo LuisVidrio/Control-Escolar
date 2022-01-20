@@ -125,8 +125,8 @@ public class Registrar_Grupo extends javax.swing.JPanel
 	}
 
 	public void ShowMensaje(boolean B){
-		M_V_C.Result(B,Pnl_01);
-		if(B) Blancos();
+		M_V_C.Result(B);
+		if(B)Blancos();
 	}
 
 	public Grupo Recupera_Datos()

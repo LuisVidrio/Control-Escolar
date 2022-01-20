@@ -101,9 +101,9 @@ public class M_V_C {
 	}
 		
 	//MENSAJE DIALOG
-	public static void Result(boolean B, JPanel P){
-		if (B) JOptionPane.showMessageDialog(P, "~SE REGISTRO CON EXITO~");
-		else JOptionPane.showMessageDialog(P, "ERROR\n~VERIFICAR LOS CAMPOS~");
+	public static void Result(boolean B){
+		if (B) JOptionPane.showMessageDialog(null, "~SE REGISTRO CON EXITO~");
+		else JOptionPane.showMessageDialog(null, "ERROR\n~VERIFICAR LOS CAMPOS~");
 	}
 
 	

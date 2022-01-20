@@ -1,9 +1,9 @@
 package Modelo_Controlador;
 
-import java.sql.PreparedStatement;
+import java.sql.CallableStatement;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 import javax.swing.table.DefaultTableModel;
@@ -15,221 +15,246 @@ import Entidades.*;
 
 public class Modelo 
 {
-
-	PreparedStatement Ps;
-	ResultSet Rs;
-	Statement St;
+	private ResultSet 			Rs	= null;
+	private CallableStatement 	Cst	= null;
+	private Connection 			Con = null;
 	
+
+	//CONSIDERAR LOS USOS ESPECIFICOS
 	
 	//AÑADIR REGISTRO A LA TABLA ALUMNOS EN LA BASE DE DATOS
-	public boolean AddAlumno(Alumno Alumno){		
-		//Optimizar mejor esto
-		if(Alumno == null)
-			return false;
-		
-		String 	nombre		= Alumno.getNombre();
-		String 	paterno 	= Alumno.getPaterno();
-		String 	materno		= Alumno.getMaterno();
-		String  tel			= Alumno.getTel();
-		String  email		= Alumno.getEmail();
-		String  grupo		= Alumno.getGrupo();
-			
-		String sql = "INSERT INTO ALUMNOS(Nombre, Paterno, Materno, Tel, Email, ID_Grupo) "
-				   + "values('"+nombre+"','"+paterno+"','"+materno+"','"+tel+"','"+email+"','"+grupo+"')";
+	public boolean AddAlumno(Alumno Alumno){			
 		try{
-			Ps = ConexionBD.getConnection().prepareStatement(sql);
-			Ps.executeUpdate();
+			Con = ConexionBD.getConnection();
+			Cst = Con.prepareCall("{CALL SPInsertar_Alumnos(?,?,?,?,?,?)}");		
+			Cst.setString(1,Alumno.getNombre());
+			Cst.setString(2,Alumno.getPaterno());
+			Cst.setString(3,Alumno.getMaterno());
+			Cst.setString(4,Alumno.getTel());
+			Cst.setString(5,Alumno.getEmail());
+			Cst.setString(6,Alumno.getGrupo());	
+			Cst.execute();			
 			return true;
-		}catch(SQLException ex){
-			System.out.println(ex.toString());
+		}catch(SQLException e){
+			System.out.println(e.toString());
 			return false;
+		}catch(NullPointerException p){
+			System.out.println(p);
+			return false;
+		}finally{
+			try {Cst.close();} catch (SQLException e) {e.printStackTrace();}
+			try {Con.close();} catch (SQLException e) {e.printStackTrace();}
 		}
 	}
 	
 	
 	//AÑADIR REGISTRO A LA TABLA MAESTROS EN LA BASE DE DATOS
 	public boolean AddMaestro(Maestro Maestro){		
-		//?????
-		if(Maestro == null)
-			return false;
-		
-		String 	nombre		= Maestro.getNombre();
-		String 	paterno 	= Maestro.getPaterno();
-		String 	materno		= Maestro.getMaterno();
-		String  tel			= Maestro.getTel();
-		String  email		= Maestro.getEmail();
-		
-		String sql = "INSERT INTO MAESTROS(Nombre, Paterno, Materno, Tel, Email) "
-				   + "values('"+nombre+"','"+paterno+"','"+materno+"','"+tel+"','"+email+"')";	
 		try{
-			Ps = ConexionBD.getConnection().prepareStatement(sql);
-			Ps.executeUpdate();
+			Con = ConexionBD.getConnection();
+			Cst = Con.prepareCall("{CALL SPInsertar_Maestros(?,?,?,?,?)}");		
+			Cst.setString(1,Maestro.getNombre());
+			Cst.setString(2,Maestro.getPaterno());
+			Cst.setString(3,Maestro.getMaterno());
+			Cst.setString(4,Maestro.getTel());
+			Cst.setString(5,Maestro.getEmail());	
+			Cst.execute();	
 			return true;
-		}catch(SQLException ex){
-			System.out.println(ex.toString());
+		}catch(SQLException e){
+			System.out.println(e.toString());
 			return false;
+		}catch(NullPointerException p){
+			System.out.println(p);
+			return false;
+		}finally{
+			try {Cst.close();} catch (SQLException e) {e.printStackTrace();}
+			try {Con.close();} catch (SQLException e) {e.printStackTrace();}
 		}
 	}
 	
 	
 	//AÑADIR REGISTRO A LA TABLA GRUPOS EN LA BASE DE DATOS
-	public boolean AddGrupo(Grupo Grupo){	
-		//?????
-		if(Grupo == null)
-			return false;
-		
-		String 	nombre		= Grupo.getNombre();
-		int 	limite   	= Grupo.getLimite();
-
-		String sql = "INSERT INTO GRUPOS(Nombre, Limite) "
-				   + "values('"+nombre+"','"+limite+"')";
+	public boolean AddGrupo(Grupo Grupo){		
 		try{
-			Ps = ConexionBD.getConnection().prepareStatement(sql);
-			Ps.executeUpdate();
+			Con = ConexionBD.getConnection();
+			Cst = Con.prepareCall("{CALL SPInsertar_Grupos(?,?)}");		
+			Cst.setString(1,Grupo.getNombre());
+			Cst.setInt(2,Grupo.getLimite());
+			Cst.execute();	
 			return true;
-		}catch(SQLException ex){
-			System.out.println(ex.toString());
+		}catch(SQLException e){
+			System.out.println(e.toString());
 			return false;
+		}catch(NullPointerException p){
+			System.out.println(p);
+			return false;
+		}finally{
+			try {Cst.close();} catch (SQLException e) {e.printStackTrace();}
+			try {Con.close();} catch (SQLException e) {e.printStackTrace();}
 		}
 	}
 	
 	
 	//AÑADIR REGISTRO A LA TABLA MATERIAS EN LA BASE DE DATOS
-	public boolean AddMateria(Materia Materia){		
-		//?????
-		if(Materia == null)
-			return false;
-
-		String 	nombre		= Materia.getNombre();
-
-		String sql = "INSERT INTO MATERIAS(Nombre) "
-				   + "values('"+nombre+"')";
+	public boolean AddMateria(Materia Materia){			
 		try{
-			Ps = ConexionBD.getConnection().prepareStatement(sql);
-			Ps.executeUpdate();
+			Con = ConexionBD.getConnection();
+			Cst = Con.prepareCall("{CALL SPInsertar_Materias(?)}");		
+			Cst.setString(1,Materia.getNombre());
+			Cst.execute();	
 			return true;
-		}catch(SQLException ex){
-			System.out.println(ex.toString());
+		}catch(SQLException e){
+			System.out.println(e.toString());
 			return false;
+		}catch(NullPointerException p){
+			System.out.println(p);
+			return false;
+		}finally{
+			try {Cst.close();} catch (SQLException e) {e.printStackTrace();}
+			try {Con.close();} catch (SQLException e) {e.printStackTrace();}
 		}
 	}
 	
 	
-	//RECUPERAR DATOS DE LA TABLA GRUPOS "ID"
-	public ArrayList<String> llenarGrupo(){			
-		ArrayList<String> lista = new ArrayList<String>();
-				
-		String sql = "SELECT * FROM GRUPOS";
-		    		    
-		try{
-			St = ConexionBD.getConnection().createStatement();  
-			Rs = St.executeQuery(sql);
-					 
-			while(Rs.next())
-				lista.add(Rs.getString("ID_Grupo"));
-			return lista;
-		}catch(SQLException ex){
-			 System.out.println(ex.toString());
-			 return null;
-		}	
-	}
-	
-	
 	//RECUPERAR DATOS DE LA TABLA ALUMNOS "MATRICULA"
-	public ArrayList<String> llenarMatricula(){			
-		ArrayList<String> lista = new ArrayList<String>();
-			
-        String sql = "SELECT * FROM ALUMNOS";
-	    		    
+	public ArrayList<String> llenarMatricula(){			    
 		try{
-			St = ConexionBD.getConnection().createStatement();  
-			Rs = St.executeQuery(sql);
-				 
+			Con = ConexionBD.getConnection();
+			Cst = Con.prepareCall("{CALL SPConsultar_Alumnos}");
+			Rs = Cst.executeQuery();
+				
+			//USO ESPECIFICO
+			ArrayList<String> lista = new ArrayList<String>();
 			while(Rs.next()) 
 				lista.add(Rs.getString("ID_Matricula"));
-			return lista;			 
+			return lista;	
+			//USO ESPECIFICO
+			
 		}catch(SQLException ex){
 			System.out.println(ex.toString());
 			return null;
+		}finally{
+			try {Rs.close();} catch (SQLException e) {e.printStackTrace();}
+			try {Cst.close();} catch (SQLException e) {e.printStackTrace();}
+			try {Con.close();} catch (SQLException e) {e.printStackTrace();}
 		}	
 			
 	}
 	
 	
 	//RECUPERAR DATOS DE LA TABLA MAESTROS "ID"
-	public ArrayList<String> llenarMaestro(){			
-		ArrayList<String> lista = new ArrayList<String>();
+	public ArrayList<String> llenarMaestro(){					    
+	    try{ 	
+	    	Con = ConexionBD.getConnection();
+	    	Cst = Con.prepareCall("{CALL SPConsultar_Maestros}");
+			Rs = Cst.executeQuery();
 			
-		String sql = "SELECT * FROM MAESTROS";
-		    		    
-	    try{
-		   	St = ConexionBD.getConnection().createStatement();  
-			Rs = St.executeQuery(sql);
-					 
+			//USO ESPECIFICO
+			ArrayList<String> lista = new ArrayList<String>();
 			while(Rs.next()) 
 					lista.add(Rs.getString("ID_Maestro"));
 			return lista;
+			//USO ESPECIFICO
+			
 	    }catch(SQLException ex){
 		    	System.out.println(ex.toString());
 		    	return null;
-			}		
+		}finally{
+			try {Rs.close();} catch (SQLException e) {e.printStackTrace();}
+			try {Cst.close();} catch (SQLException e) {e.printStackTrace();}
+			try {Con.close();} catch (SQLException e) {e.printStackTrace();}
+		}			
 	}
 		
 			
 	//RECUPERAR DATOS DE LA TABLA MATERIAS "ID"
-	public ArrayList<String> llenarMateria(){						
-		ArrayList<String> lista = new ArrayList<String>();
-				
-		String sql = "SELECT * FROM MATERIAS";
-		    		    
+	public ArrayList<String> llenarMateria(){						    
 		try{
-			St = ConexionBD.getConnection().createStatement();  
-			Rs = St.executeQuery(sql);
-					 
+			Con = ConexionBD.getConnection();
+			Cst = Con.prepareCall("{CALL SPConsultar_Materias}");
+			Rs = Cst.executeQuery();
+			
+			//USO ESPCIFICO
+			ArrayList<String> lista = new ArrayList<String>(); 		
 			while(Rs.next()) 
 				lista.add(Rs.getString("ID_Materia"));
 			return lista;
+			//USO ESPECIFICO
+			
 		}catch(SQLException ex){
 			System.out.println(ex.toString());
 			return null;
-		}	
+		}finally{
+			try {Rs.close();} catch (SQLException e) {e.printStackTrace();}
+			try {Cst.close();} catch (SQLException e) {e.printStackTrace();}
+			try {Con.close();} catch (SQLException e) {e.printStackTrace();}
+		}		
 	}
 
 	
-	//RECUPERAR TABLA GRUPOS
-	public DefaultTableModel Grupos(){					
-		DefaultTableModel modelo = new DefaultTableModel();
-				
-		String sql = "SELECT * FROM GRUPOS";
-		    		    
+	//RECUPERAR DATOS DE LA TABLA GRUPOS   "ID"
+	public ArrayList<String> llenarGrupo(){					    		    
 		try{
-			St = ConexionBD.getConnection().createStatement();  
-			Rs = St.executeQuery(sql);
-					 
+			Con = ConexionBD.getConnection();
+			Cst = Con.prepareCall("{CALL SPConsultar_Grupos}");
+			Rs = Cst.executeQuery();
+			
+			//USO ESPECIFICO
+			ArrayList<String> lista = new ArrayList<String>();
+			while(Rs.next())
+				lista.add(Rs.getString("ID_Grupo"));
+			return lista;
+			//USO ESPECIFICO
+			
+		}catch(SQLException ex){
+			 System.out.println(ex.toString());
+			 return null;
+		}finally{
+			try {Rs.close();} catch (SQLException e) {e.printStackTrace();}
+			try {Cst.close();} catch (SQLException e) {e.printStackTrace();}
+			try {Con.close();} catch (SQLException e) {e.printStackTrace();}
+		}		
+	}
+
+
+	//RECUPERAR TABLA GRUPOS
+	public DefaultTableModel Grupos(){										    		    
+		try{	
+			Con = ConexionBD.getConnection();
+			Cst = Con.prepareCall("{CALL SPConsultar_Grupos}");
+			Rs = Cst.executeQuery();
+			
+			//USO ESPECIFICO
+			DefaultTableModel modelo = new DefaultTableModel();
 			ResultSetMetaData Rsm = Rs.getMetaData();	 
-			int Cant_Columnas = Rsm.getColumnCount();
 
 			modelo.addColumn("ID_Grupo");
 			modelo.addColumn("Nombre");
 			modelo.addColumn("Limite");
 						
 			while(Rs.next()){	
-				Object[] lista = new Object[Cant_Columnas];
+				Object[] lista = new Object[Rsm.getColumnCount()];
 						 
-				for(int i=0;i<Cant_Columnas;i++) 
+				for(int i=0;i<Rsm.getColumnCount();i++) 
 					lista[i] = Rs.getObject(i+1);
 				
 				modelo.addRow(lista);
 			}		 		
-		 
 			return modelo;
+			//USO ESPECIFICO
+			
 		}catch(SQLException ex){
 			System.out.println(ex.toString());
 			return null;
-		}	
+		}finally{
+			try {Rs.close();} catch (SQLException e) {e.printStackTrace();}
+			try {Cst.close();} catch (SQLException e) {e.printStackTrace();}
+			try {Con.close();} catch (SQLException e) {e.printStackTrace();}
+		}		
 				
 	}
 		
+	
 	//ACCION: TERMINAR EL PROGRAMA "SALIR"
 	public void Salir(){
 		System.exit(0);

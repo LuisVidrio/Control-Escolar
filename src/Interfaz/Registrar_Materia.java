@@ -80,7 +80,6 @@ public class Registrar_Materia extends javax.swing.JPanel
 		
 }
 	
-	
 	public void llenarID(ArrayList<String> lista){
 		M_V_C.llenar_Texto(lista,txt_IDMateria);
 	}
@@ -91,8 +90,8 @@ public class Registrar_Materia extends javax.swing.JPanel
 	}
 
 	public void ShowMensaje(boolean B){
-		M_V_C.Result(B,Pnl_01);
-		if(B) Blancos();
+		M_V_C.Result(B);
+		if(B)Blancos();
 	}
 			
 	public Materia Recupera_Datos(){		

@@ -216,8 +216,8 @@ public class Registrar_Alumno extends javax.swing.JPanel{
 
 	//SHOW MESSAGE
 	public void ShowMensaje(boolean B){
-		M_V_C.Result(B,Pnl_01);
-		if(B) Blancos();
+		M_V_C.Result(B);
+		if(B)Blancos();
 	}
 			
 	//DEBE HABER ALGUNA MEJOR MANERA DE VALIDAR Y AGREGAR LOS CAMPOS

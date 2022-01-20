@@ -203,8 +203,8 @@ public class Registrar_Maestro extends javax.swing.JPanel
 
 	//SHOW MESSAGE
 	public void ShowMensaje(boolean B){
-		M_V_C.Result(B,Pnl_01);
-		if(B) Blancos();
+		M_V_C.Result(B);
+		if(B)Blancos();
 	}		
 	
 	//REGRESA UN OBJETO DE TIPO MAESTRO CON LOS DATOS INGRESADOS EN LOS CAMPOS
