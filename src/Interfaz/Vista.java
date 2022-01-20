@@ -3,6 +3,8 @@ package Interfaz;
 import java.awt.*;
 import javax.swing.*;
 import Modelo_Controlador.Controlador;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Vista extends JFrame{
 	
@@ -55,7 +57,7 @@ public class Vista extends JFrame{
    
 	    //Menu Bar's
 	    Bar_Principal = new JMenuBar();
-	    Bar_Principal.setBounds(0, 0, 877, 43);
+	    Bar_Principal.setBounds(0, 0, 916, 43);
 	    Pnl_Principal.add(Bar_Principal);
 	        
 	    M_Inicio = new JMenu("I N I C I O");
@@ -125,10 +127,15 @@ public class Vista extends JFrame{
 	    M_Grupos.add(Item_G_Buscar);
 	        
 	    //BS
-	    btnSalir = new JButton("SALIR");
-	    btnSalir.setBackground(new Color(250, 128, 114));
-	    btnSalir.setFont(new Font("Bahnschrift", Font.PLAIN, 13));
-	    btnSalir.setBounds(871, 0, 99, 43);
+	    btnSalir = new JButton("X");
+	    btnSalir.addActionListener(new ActionListener() {
+	    	public void actionPerformed(ActionEvent e) {
+	    	}
+	    });
+	    btnSalir.setForeground(Color.WHITE);
+	    btnSalir.setBackground(new Color(255, 102, 102));
+	    btnSalir.setFont(new Font("Arial Black", Font.PLAIN, 13));
+	    btnSalir.setBounds(915, 0, 55, 41);
 	    Pnl_Principal.add(btnSalir);   
 	    
 	}

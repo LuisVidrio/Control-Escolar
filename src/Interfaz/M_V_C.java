@@ -97,7 +97,7 @@ public class M_V_C {
 	//LIMPIA CAJAS DE TEXTO Y MSJ DE ''ERROR''
 	public static void Blancos(JTextField T){		
 		T.setText("");
-		T.setBorder(null);
+		T.setBorder(new LineBorder(new Color(13,106,191)));
 	}
 		
 	//MENSAJE DIALOG
