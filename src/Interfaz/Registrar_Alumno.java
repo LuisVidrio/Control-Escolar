@@ -144,6 +144,9 @@ public class Registrar_Alumno extends javax.swing.JPanel{
 		//GUARDAR
 		btn_Guardar = new JButton("Guardar");
 		btn_Guardar.setBounds(411, 441, 155, 47);
+		btn_Guardar.setForeground(Color.WHITE);
+		btn_Guardar.setBackground(new Color(18,35,158));
+		btn_Guardar.setFont(new Font("Arial Black", Font.PLAIN, 12));
 		Pnl_01.add(btn_Guardar);
 		
 		//SEPARADORES
@@ -183,13 +186,18 @@ public class Registrar_Alumno extends javax.swing.JPanel{
 		SP_07.setBounds(104, 105, 110, 2);
 		Pnl_01.add(SP_07);
 		
-		
 		//Oyentes, no creo que deberia usarlos en vista, pero aqui es correcto? averiguar //Provisionales
 		txt_Nombre.addKeyListener(new KeyAdapter(){public void keyTyped(KeyEvent e) {M_V_C.Obligar_Alfabeto(e,txt_Nombre.getText());}});
 		txt_Paterno.addKeyListener(new KeyAdapter(){public void keyTyped(KeyEvent e) {M_V_C.Obligar_Alfabeto(e,txt_Paterno.getText());}});
 		txt_Materno.addKeyListener(new KeyAdapter(){public void keyTyped(KeyEvent e) {M_V_C.Obligar_Alfabeto(e,txt_Materno.getText());}});
 		txt_Tel.addKeyListener(new KeyAdapter(){public void keyTyped(KeyEvent e) {M_V_C.Obligar_Numeros(e,txt_Tel.getText());}});	
 	
+		
+		M_V_C.DeshabilitarCopyPaste(txt_Nombre);
+		M_V_C.DeshabilitarCopyPaste(txt_Paterno);
+		M_V_C.DeshabilitarCopyPaste(txt_Materno);
+		M_V_C.DeshabilitarCopyPaste(txt_Tel);
+		
 }
 	
 	//LLENA COMBO DE GRUPO
@@ -201,6 +209,7 @@ public class Registrar_Alumno extends javax.swing.JPanel{
 	public void llenarMatricula(ArrayList<String> lista){
 		M_V_C.llenar_Texto(lista,txt_Matricula);
 	}
+
 
 	//LIMPIA LAS CAJAS 
 	public void Blancos() 

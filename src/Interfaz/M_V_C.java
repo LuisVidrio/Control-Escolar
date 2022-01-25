@@ -5,21 +5,21 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.KeyStroke;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
 public class M_V_C {
-//METODOS DE VALIDACION EN CAMPOS ++ OTROS METODOS 
-	
-	//SON OYENTES!! #TRATARLOS DESPUES
+//METODOS DE VALIDACION EN CAMPOS
 	
 	//SOLO DATOS NUMERICOS
 	public static void Obligar_Numeros(KeyEvent e, String S){                                    
 	    int key = e.getKeyChar();
+	   
 	    boolean numeros = key >= 48 && key <= 57;
 		        
 	    if (!numeros)
@@ -44,9 +44,7 @@ public class M_V_C {
 			e.consume();	 
 	}
 	
-	
-	//SOLO VERIFICACION SIN EVENTOS - SOLO VISTA
-	
+	//VERIFICACION SIN EVENTOS
 	
 	//VALIDAR DIMENSIONES MINIMAS Y MAXIMAS	
 	public static boolean Validar_Campos(JTextField Txt) {
@@ -67,9 +65,18 @@ public class M_V_C {
 		return true;
 	}
 	
+	//DESHABILITAR EL PEGAR EN CAMPOS DE TEXTO
+	public static void DeshabilitarCopyPaste(JComponent Componente){
+		Componente.getInputMap().put(KeyStroke.getKeyStroke("control X"), "none");
+		Componente.getInputMap().put(KeyStroke.getKeyStroke("control C"), "none");
+		Componente.getInputMap().put(KeyStroke.getKeyStroke("control V"), "none");
+	}
 	
 	
-	//############################ HASTA AQUI YA SON METODOS DE LLENADO Y LIMPIADO ++ MENSAJEDIALOG(NO VALIDACIONES)
+	
+	
+	
+	//############################ HASTA AQUI YA SON METODOS DE LLENADO Y LIMPIADO (NO VALIDACIONES)
 	
 	//METODO PARA LLENAR CAMPOS DE COMBOBOX DESDE LA BD
 	public static void llenar_Combo(ArrayList<String> lista, JComboBox<String> JCb){	
@@ -79,7 +86,7 @@ public class M_V_C {
 	}
 	
 	
-	//PARA LLENAR UN TEXTFIELD DESDE LA BD "+1 PARA ID NO ES GENERAL AUN"
+	//PARA LLENAR UN TEXTFIELD DESDE LA BD
 	public static void llenar_Texto(ArrayList<String> lista, JTextField M){
 		if(lista.size() == 0){
 			M.setText("1");
@@ -91,7 +98,7 @@ public class M_V_C {
 	
 	//METODO PARA LLENAR TABLA JTABLE CON DATOS DE LA BD
 	public static void llenarTabla(DefaultTableModel T,JTable JT){
-		JT.setModel(T);
+			JT.setModel(T);
 	}
 	
 	//LIMPIA CAJAS DE TEXTO Y MSJ DE ''ERROR''
@@ -105,7 +112,6 @@ public class M_V_C {
 		if (B) JOptionPane.showMessageDialog(null, "~SE REGISTRO CON EXITO~");
 		else JOptionPane.showMessageDialog(null, "ERROR\n~VERIFICAR LOS CAMPOS~");
 	}
-
 	
 }
 

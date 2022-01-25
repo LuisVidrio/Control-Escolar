@@ -1,9 +1,10 @@
+
 GO
 CREATE DATABASE Ctrl_Escolar
 GO
 USE [Ctrl_Escolar]
 GO
-/****** Object:  Table [dbo].[ALUMNOS]    Script Date: 19/01/2022 04:55:21 p. m. ******/
+/****** Object:  Table [dbo].[ALUMNOS]    Script Date: 25/01/2022 03:01:07 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -22,7 +23,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[CALIFICACIONES]    Script Date: 19/01/2022 04:55:21 p. m. ******/
+/****** Object:  Table [dbo].[CALIFICACIONES]    Script Date: 25/01/2022 03:01:07 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -38,7 +39,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[DIRECTORIO]    Script Date: 19/01/2022 04:55:21 p. m. ******/
+/****** Object:  Table [dbo].[DIRECTORIO]    Script Date: 25/01/2022 03:01:07 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -53,7 +54,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[GRUPOS]    Script Date: 19/01/2022 04:55:21 p. m. ******/
+/****** Object:  Table [dbo].[GRUPOS]    Script Date: 25/01/2022 03:01:07 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -68,7 +69,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[HORARIOS]    Script Date: 19/01/2022 04:55:21 p. m. ******/
+/****** Object:  Table [dbo].[HORARIOS]    Script Date: 25/01/2022 03:01:07 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -86,7 +87,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[MAESTROS]    Script Date: 19/01/2022 04:55:21 p. m. ******/
+/****** Object:  Table [dbo].[MAESTROS]    Script Date: 25/01/2022 03:01:07 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -104,7 +105,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[MATERIAS]    Script Date: 19/01/2022 04:55:21 p. m. ******/
+/****** Object:  Table [dbo].[MATERIAS]    Script Date: 25/01/2022 03:01:07 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -143,7 +144,7 @@ GO
 ALTER TABLE [dbo].[HORARIOS]  WITH CHECK ADD FOREIGN KEY([ID_Grupo])
 REFERENCES [dbo].[GRUPOS] ([ID_Grupo])
 GO
-/****** Object:  StoredProcedure [dbo].[SPConsultar_Alumnos]    Script Date: 19/01/2022 04:55:21 p. m. ******/
+/****** Object:  StoredProcedure [dbo].[SPConsultar_Alumnos]    Script Date: 25/01/2022 03:01:07 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -160,7 +161,7 @@ CREATE PROCEDURE [dbo].[SPConsultar_Alumnos]
 AS
 SELECT * FROM ALUMNOS
 GO
-/****** Object:  StoredProcedure [dbo].[SPConsultar_Calificaciones]    Script Date: 19/01/2022 04:55:21 p. m. ******/
+/****** Object:  StoredProcedure [dbo].[SPConsultar_Calificaciones]    Script Date: 25/01/2022 03:01:07 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -172,7 +173,7 @@ CREATE PROCEDURE [dbo].[SPConsultar_Calificaciones]
 AS
 SELECT * FROM CALIFICACIONES
 GO
-/****** Object:  StoredProcedure [dbo].[SPConsultar_Directorio]    Script Date: 19/01/2022 04:55:21 p. m. ******/
+/****** Object:  StoredProcedure [dbo].[SPConsultar_Directorio]    Script Date: 25/01/2022 03:01:07 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -184,7 +185,17 @@ CREATE PROCEDURE [dbo].[SPConsultar_Directorio]
 AS
 SELECT * FROM DIRECTORIO
 GO
-/****** Object:  StoredProcedure [dbo].[SPConsultar_Grupos]    Script Date: 19/01/2022 04:55:21 p. m. ******/
+/****** Object:  StoredProcedure [dbo].[SPConsultar_Grupo]    Script Date: 25/01/2022 03:01:07 p. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[SPConsultar_Grupo]
+@ID_Grupo int
+AS
+SELECT * FROM GRUPOS WHERE  ID_Grupo = @ID_Grupo
+GO
+/****** Object:  StoredProcedure [dbo].[SPConsultar_Grupos]    Script Date: 25/01/2022 03:01:07 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -196,7 +207,7 @@ CREATE PROCEDURE [dbo].[SPConsultar_Grupos]
 AS
 SELECT * FROM GRUPOS
 GO
-/****** Object:  StoredProcedure [dbo].[SPConsultar_Horarios]    Script Date: 19/01/2022 04:55:21 p. m. ******/
+/****** Object:  StoredProcedure [dbo].[SPConsultar_Horarios]    Script Date: 25/01/2022 03:01:07 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -208,7 +219,7 @@ CREATE PROCEDURE [dbo].[SPConsultar_Horarios]
 AS
 SELECT * FROM HORARIOS
 GO
-/****** Object:  StoredProcedure [dbo].[SPConsultar_Maestros]    Script Date: 19/01/2022 04:55:21 p. m. ******/
+/****** Object:  StoredProcedure [dbo].[SPConsultar_Maestros]    Script Date: 25/01/2022 03:01:07 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -220,7 +231,17 @@ CREATE PROCEDURE [dbo].[SPConsultar_Maestros]
 AS
 SELECT * FROM MAESTROS
 GO
-/****** Object:  StoredProcedure [dbo].[SPConsultar_Materias]    Script Date: 19/01/2022 04:55:21 p. m. ******/
+/****** Object:  StoredProcedure [dbo].[SPConsultar_Materia]    Script Date: 25/01/2022 03:01:07 p. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[SPConsultar_Materia]
+@ID_Materia int
+AS
+SELECT * FROM MATERIAS WHERE  ID_Materia = @ID_Materia
+GO
+/****** Object:  StoredProcedure [dbo].[SPConsultar_Materias]    Script Date: 25/01/2022 03:01:07 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -232,7 +253,7 @@ CREATE PROCEDURE [dbo].[SPConsultar_Materias]
 AS
 SELECT * FROM MATERIAS
 GO
-/****** Object:  StoredProcedure [dbo].[SPEditar_Alumnos]    Script Date: 19/01/2022 04:55:21 p. m. ******/
+/****** Object:  StoredProcedure [dbo].[SPEditar_Alumnos]    Script Date: 25/01/2022 03:01:07 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -264,7 +285,7 @@ UPDATE ALUMNOS SET	Nombre	 = @Nombre,
 					ID_Grupo = @ID_Grupo
 WHERE ID_Matricula = @ID_Matricula
 GO
-/****** Object:  StoredProcedure [dbo].[SPEditar_Calificaciones]    Script Date: 19/01/2022 04:55:21 p. m. ******/
+/****** Object:  StoredProcedure [dbo].[SPEditar_Calificaciones]    Script Date: 25/01/2022 03:01:07 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -280,7 +301,7 @@ AS
 UPDATE CALIFICACIONES SET Calificacion  = @Calificacion
 WHERE ID_Materia = @ID_Materia AND ID_Matricula = @ID_Matricula
 GO
-/****** Object:  StoredProcedure [dbo].[SPEditar_Directorio]    Script Date: 19/01/2022 04:55:21 p. m. ******/
+/****** Object:  StoredProcedure [dbo].[SPEditar_Directorio]    Script Date: 25/01/2022 03:01:07 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -296,7 +317,7 @@ UPDATE DIRECTORIO SET	ID_Materia  = @ID_Materia,
 						ID_Maestro = @ID_Maestro
 WHERE ID_Materia = @ID_Materia AND ID_Maestro = @ID_Maestro
 GO
-/****** Object:  StoredProcedure [dbo].[SPEditar_Grupos]    Script Date: 19/01/2022 04:55:21 p. m. ******/
+/****** Object:  StoredProcedure [dbo].[SPEditar_Grupos]    Script Date: 25/01/2022 03:01:07 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -313,7 +334,7 @@ UPDATE GRUPOS SET	Nombre = @Nombre,
 					Limite = @Limite
 WHERE ID_Grupo = @ID_Grupo 
 GO
-/****** Object:  StoredProcedure [dbo].[SPEditar_Horarios]    Script Date: 19/01/2022 04:55:21 p. m. ******/
+/****** Object:  StoredProcedure [dbo].[SPEditar_Horarios]    Script Date: 25/01/2022 03:01:07 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -336,7 +357,7 @@ UPDATE HORARIOS SET	ID_Materia	= @ID_Materia,
 					ID_Grupo	= @ID_Grupo
 WHERE ID_Horario = @ID_Horario 
 GO
-/****** Object:  StoredProcedure [dbo].[SPEditar_Maestros]    Script Date: 19/01/2022 04:55:21 p. m. ******/
+/****** Object:  StoredProcedure [dbo].[SPEditar_Maestros]    Script Date: 25/01/2022 03:01:07 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -359,7 +380,7 @@ UPDATE MAESTROS SET	Nombre	 = @Nombre,
 					Email	 = @Email
 WHERE ID_Maestro = @ID_Maestro
 GO
-/****** Object:  StoredProcedure [dbo].[SPEditar_Materias]    Script Date: 19/01/2022 04:55:21 p. m. ******/
+/****** Object:  StoredProcedure [dbo].[SPEditar_Materias]    Script Date: 25/01/2022 03:01:07 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -374,7 +395,7 @@ AS
 UPDATE MATERIAS SET	Nombre = @Nombre
 WHERE ID_Materia = @ID_Materia
 GO
-/****** Object:  StoredProcedure [dbo].[SPEliminar_Alumnos]    Script Date: 19/01/2022 04:55:21 p. m. ******/
+/****** Object:  StoredProcedure [dbo].[SPEliminar_Alumnos]    Script Date: 25/01/2022 03:01:07 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -394,7 +415,7 @@ CREATE PROCEDURE [dbo].[SPEliminar_Alumnos]
 AS
 DELETE ALUMNOS WHERE ID_Matricula = @ID_Matricula
 GO
-/****** Object:  StoredProcedure [dbo].[SPEliminar_Calificaciones]    Script Date: 19/01/2022 04:55:21 p. m. ******/
+/****** Object:  StoredProcedure [dbo].[SPEliminar_Calificaciones]    Script Date: 25/01/2022 03:01:07 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -408,7 +429,7 @@ CREATE PROCEDURE [dbo].[SPEliminar_Calificaciones]
 AS
 DELETE CALIFICACIONES WHERE ID_Materia = @ID_Materia AND @ID_Matricula =  @ID_Matricula
 GO
-/****** Object:  StoredProcedure [dbo].[SPEliminar_Directorio]    Script Date: 19/01/2022 04:55:21 p. m. ******/
+/****** Object:  StoredProcedure [dbo].[SPEliminar_Directorio]    Script Date: 25/01/2022 03:01:07 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -422,7 +443,7 @@ CREATE PROCEDURE [dbo].[SPEliminar_Directorio]
 AS
 DELETE DIRECTORIO WHERE ID_Materia = @ID_Materia AND ID_Maestro = @ID_Maestro
 GO
-/****** Object:  StoredProcedure [dbo].[SPEliminar_Grupos]    Script Date: 19/01/2022 04:55:21 p. m. ******/
+/****** Object:  StoredProcedure [dbo].[SPEliminar_Grupos]    Script Date: 25/01/2022 03:01:07 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -435,7 +456,7 @@ CREATE PROCEDURE [dbo].[SPEliminar_Grupos]
 AS
 DELETE GRUPOS WHERE ID_Grupo = @ID_Grupo
 GO
-/****** Object:  StoredProcedure [dbo].[SPEliminar_Horarios]    Script Date: 19/01/2022 04:55:21 p. m. ******/
+/****** Object:  StoredProcedure [dbo].[SPEliminar_Horarios]    Script Date: 25/01/2022 03:01:07 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -448,7 +469,7 @@ CREATE PROCEDURE [dbo].[SPEliminar_Horarios]
 AS
 DELETE HORARIOS WHERE ID_Horario = @ID_Horario
 GO
-/****** Object:  StoredProcedure [dbo].[SPEliminar_Maestros]    Script Date: 19/01/2022 04:55:21 p. m. ******/
+/****** Object:  StoredProcedure [dbo].[SPEliminar_Maestros]    Script Date: 25/01/2022 03:01:07 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -461,7 +482,7 @@ CREATE PROCEDURE [dbo].[SPEliminar_Maestros]
 AS
 DELETE MAESTROS WHERE ID_Maestro = @ID_Maestro
 GO
-/****** Object:  StoredProcedure [dbo].[SPEliminar_Materias]    Script Date: 19/01/2022 04:55:21 p. m. ******/
+/****** Object:  StoredProcedure [dbo].[SPEliminar_Materias]    Script Date: 25/01/2022 03:01:07 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -474,7 +495,7 @@ CREATE PROCEDURE [dbo].[SPEliminar_Materias]
 AS
 DELETE MATERIAS WHERE ID_Materia = @ID_Materia
 GO
-/****** Object:  StoredProcedure [dbo].[SPInsertar_Alumnos]    Script Date: 19/01/2022 04:55:21 p. m. ******/
+/****** Object:  StoredProcedure [dbo].[SPInsertar_Alumnos]    Script Date: 25/01/2022 03:01:07 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -497,7 +518,7 @@ CREATE PROCEDURE [dbo].[SPInsertar_Alumnos](
 AS
 INSERT INTO ALUMNOS VALUES (@Nombre,@Paterno,@Materno,@Telefono,@Email,@ID_Grupo)
 GO
-/****** Object:  StoredProcedure [dbo].[SPInsertar_Calificaciones]    Script Date: 19/01/2022 04:55:21 p. m. ******/
+/****** Object:  StoredProcedure [dbo].[SPInsertar_Calificaciones]    Script Date: 25/01/2022 03:01:07 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -513,7 +534,7 @@ CREATE PROCEDURE [dbo].[SPInsertar_Calificaciones](
 AS
 INSERT INTO CALIFICACIONES VALUES (@ID_Materia,@ID_Matricula,@Calificacion)
 GO
-/****** Object:  StoredProcedure [dbo].[SPInsertar_Directorio]    Script Date: 19/01/2022 04:55:21 p. m. ******/
+/****** Object:  StoredProcedure [dbo].[SPInsertar_Directorio]    Script Date: 25/01/2022 03:01:07 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -528,7 +549,7 @@ CREATE PROCEDURE [dbo].[SPInsertar_Directorio](
 AS
 INSERT INTO DIRECTORIO VALUES (@ID_Materia,@ID_Maestro)
 GO
-/****** Object:  StoredProcedure [dbo].[SPInsertar_Grupos]    Script Date: 19/01/2022 04:55:21 p. m. ******/
+/****** Object:  StoredProcedure [dbo].[SPInsertar_Grupos]    Script Date: 25/01/2022 03:01:07 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -543,7 +564,7 @@ CREATE PROCEDURE [dbo].[SPInsertar_Grupos](
 AS
 INSERT INTO GRUPOS VALUES (@Nombre,@Limite)
 GO
-/****** Object:  StoredProcedure [dbo].[SPInsertar_Horarios]    Script Date: 19/01/2022 04:55:21 p. m. ******/
+/****** Object:  StoredProcedure [dbo].[SPInsertar_Horarios]    Script Date: 25/01/2022 03:01:07 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -562,7 +583,7 @@ CREATE PROCEDURE [dbo].[SPInsertar_Horarios](
 AS
 INSERT INTO HORARIOS VALUES (@ID_Materia,@ID_Maestro,@Hora_Ini,@Hora_Fin,@ID_Grupo)
 GO
-/****** Object:  StoredProcedure [dbo].[SPInsertar_Maestros]    Script Date: 19/01/2022 04:55:21 p. m. ******/
+/****** Object:  StoredProcedure [dbo].[SPInsertar_Maestros]    Script Date: 25/01/2022 03:01:07 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -580,7 +601,7 @@ CREATE PROCEDURE [dbo].[SPInsertar_Maestros](
 AS
 INSERT INTO MAESTROS VALUES (@Nombre,@Paterno,@Materno,@Telefono,@Email)
 GO
-/****** Object:  StoredProcedure [dbo].[SPInsertar_Materias]    Script Date: 19/01/2022 04:55:21 p. m. ******/
+/****** Object:  StoredProcedure [dbo].[SPInsertar_Materias]    Script Date: 25/01/2022 03:01:07 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON

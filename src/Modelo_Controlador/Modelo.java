@@ -116,6 +116,10 @@ public class Modelo
 	}
 	
 	
+	
+	
+	
+	
 	//RECUPERAR DATOS DE LA TABLA ALUMNOS "MATRICULA"
 	public ArrayList<String> llenarMatricula(){			    
 		try{
@@ -216,6 +220,9 @@ public class Modelo
 		}		
 	}
 
+	
+	
+	
 
 	//RECUPERAR TABLA GRUPOS
 	public DefaultTableModel Grupos(){										    		    
@@ -255,10 +262,123 @@ public class Modelo
 	}
 		
 	
+	public DefaultTableModel Buscar_Grupo(Grupo Grupo) {
+		try{	
+			
+			Con = ConexionBD.getConnection();
+			Cst = Con.prepareCall("{CALL SPConsultar_Grupo(?)}");
+			Cst.setInt(1,Grupo.getID_Grupo());
+			Rs = Cst.executeQuery();	
+			
+			//USO ESPECIFICO
+			DefaultTableModel modelo = new DefaultTableModel();
+			ResultSetMetaData Rsm = Rs.getMetaData();	 
+
+			modelo.addColumn("ID_Grupo");
+			modelo.addColumn("Nombre");
+			modelo.addColumn("Limite");
+						
+			while(Rs.next()){	
+				Object[] lista = new Object[Rsm.getColumnCount()];
+						 
+				for(int i=0;i<Rsm.getColumnCount();i++) 
+					lista[i] = Rs.getObject(i+1);
+				
+				modelo.addRow(lista);
+			}		 		
+			return modelo;
+			//USO ESPECIFICO
+			
+		}catch(SQLException ex){
+			System.out.println(ex.toString());
+			return null;
+		}finally{
+			try {Rs.close();} catch (SQLException e) {e.printStackTrace();}
+			try {Cst.close();} catch (SQLException e) {e.printStackTrace();}
+			try {Con.close();} catch (SQLException e) {e.printStackTrace();}
+		}
+	}
+		
+	
+
+	public DefaultTableModel Buscar_Materia(Materia Materia) {
+		try{	
+			
+			Con = ConexionBD.getConnection();
+			Cst = Con.prepareCall("{CALL SPConsultar_Materia(?)}");
+			Cst.setInt(1,Materia.getID());
+			Rs = Cst.executeQuery();	
+			
+			//USO ESPECIFICO
+			DefaultTableModel modelo = new DefaultTableModel();
+			ResultSetMetaData Rsm = Rs.getMetaData();	 
+
+			modelo.addColumn("ID_Materia");
+			modelo.addColumn("Nombre");
+						
+			while(Rs.next()){	
+				Object[] lista = new Object[Rsm.getColumnCount()];
+						 
+				for(int i=0;i<Rsm.getColumnCount();i++) 
+					lista[i] = Rs.getObject(i+1);
+				
+				modelo.addRow(lista);
+			}		 		
+			return modelo;
+			//USO ESPECIFICO
+			
+		}catch(SQLException ex){
+			System.out.println(ex.toString());
+			return null;
+		}finally{
+			try {Rs.close();} catch (SQLException e) {e.printStackTrace();}
+			try {Cst.close();} catch (SQLException e) {e.printStackTrace();}
+			try {Con.close();} catch (SQLException e) {e.printStackTrace();}
+		}
+	}
+	
+
+	public DefaultTableModel Materias(){										    		    
+		try{	
+			Con = ConexionBD.getConnection();
+			Cst = Con.prepareCall("{CALL SPConsultar_Materias}");
+			Rs = Cst.executeQuery();
+			
+			//USO ESPECIFICO
+			DefaultTableModel modelo = new DefaultTableModel();
+			ResultSetMetaData Rsm = Rs.getMetaData();	 
+
+			modelo.addColumn("ID_Materia");
+			modelo.addColumn("Nombre");
+						
+			while(Rs.next()){	
+				Object[] lista = new Object[Rsm.getColumnCount()];
+						 
+				for(int i=0;i<Rsm.getColumnCount();i++) 
+					lista[i] = Rs.getObject(i+1);
+				
+				modelo.addRow(lista);
+			}		 		
+			return modelo;
+			//USO ESPECIFICO
+			
+		}catch(SQLException ex){
+			System.out.println(ex.toString());
+			return null;
+		}finally{
+			try {Rs.close();} catch (SQLException e) {e.printStackTrace();}
+			try {Cst.close();} catch (SQLException e) {e.printStackTrace();}
+			try {Con.close();} catch (SQLException e) {e.printStackTrace();}
+		}		
+				
+	}
+
+
+	
 	//ACCION: TERMINAR EL PROGRAMA "SALIR"
 	public void Salir(){
 		System.exit(0);
 	}
-			
+	
 
 }

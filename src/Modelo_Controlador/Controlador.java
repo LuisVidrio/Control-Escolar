@@ -52,7 +52,21 @@ public class Controlador implements ActionListener{
 		if(e.getSource() == vista.getR_Grupo().getBtn_Cargar())
 			vista.getR_Grupo().llenarTabla(modelo.Grupos());
 		
-			
+		
+		//CARGA LA TABLA DE GRUPO
+		if(e.getSource() == vista.getR_Grupo().getBtn_Buscar())
+			vista.getR_Grupo().llenarTabla(modelo.Buscar_Grupo(vista.getR_Grupo().Buscar_Grupo()));
+		
+		
+		//CARGA LA TABLA DE MATERIA
+		if(e.getSource() == vista.getR_Materia().getBtn_Buscar())
+			vista.getR_Materia().llenarTabla(modelo.Buscar_Materia(vista.getR_Materia().Buscar_Materia()));
+				
+		//CARGA LA TABLA DE MATERIAS
+		if(e.getSource() == vista.getR_Materia().getBtn_Cargar())
+			vista.getR_Materia().llenarTabla(modelo.Materias());
+
+		
 		//ACCION: CAMBIAR DE PANEL: REGISTRAR ALUMNO
 		if(e.getSource() == vista.getItem_Al_Registrar()) 
 		{
@@ -88,8 +102,12 @@ public class Controlador implements ActionListener{
 			vista.nuevoPanel(vista.getR_Materia());		
 			vista.getR_Materia().Blancos();
 			vista.getR_Materia().llenarID(modelo.llenarMateria());
+			vista.getR_Materia().llenarTabla(modelo.Materias());
 		}
 
+		if(e.getSource() == vista.getM_INICIO()){
+			vista.nuevoPanel(vista.getPnl_Inicio());
+		}
 		
 		//ACCION: TERMINA EL PROGRAMA "SALIR"  
 		if(e.getSource() == vista.getBtnSalir()) 

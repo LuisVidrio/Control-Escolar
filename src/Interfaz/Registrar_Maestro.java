@@ -136,6 +136,9 @@ public class Registrar_Maestro extends javax.swing.JPanel
 		//GUARDAR
 		btn_Guardar = new JButton("Guardar");
 		btn_Guardar.setBounds(411, 441, 155, 47);
+		btn_Guardar.setForeground(Color.WHITE);
+		btn_Guardar.setBackground(new Color(18,35,158));
+		btn_Guardar.setFont(new Font("Arial Black", Font.PLAIN, 12));
 		Pnl_01.add(btn_Guardar);
 		
 		//SEPARADORES
@@ -182,6 +185,10 @@ public class Registrar_Maestro extends javax.swing.JPanel
 		txt_Materno.addKeyListener(new KeyAdapter(){public void keyTyped(KeyEvent e) {M_V_C.Obligar_Alfabeto(e,txt_Materno.getText());}});
 		txt_Tel.addKeyListener(new KeyAdapter(){public void keyTyped(KeyEvent e) {M_V_C.Obligar_Numeros(e,txt_Tel.getText());}});	
 	
+		M_V_C.DeshabilitarCopyPaste(txt_Nombre);
+		M_V_C.DeshabilitarCopyPaste(txt_Paterno);
+		M_V_C.DeshabilitarCopyPaste(txt_Materno);
+		M_V_C.DeshabilitarCopyPaste(txt_Tel);
 }
 	
 	//LLENA TEXTO DE MATRICULA
